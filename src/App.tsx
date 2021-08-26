@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import { getMovieSaga } from './redux/actions/movieActions';
 
-const App = () => {
+const App = ({getMovie, loading}) => {
   const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log('app!', loading, getMovie);
+    getMovie('333');
+  }, []);
 
   return (
     <div className="App">
@@ -43,4 +49,13 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  loading: state.movies.loading,
+});
+
+const mapDispatchToProps = {
+  getMovie: getMovieSaga,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;
