@@ -1,7 +1,5 @@
 import { ActionType, getType } from 'typesafe-actions';
-import {
-  FIND_MOVIES, SET_MOVIE, GET_DISCOVER, SET_LOADING,
-} from '../actions/movieTypes';
+import * as actions from '../actions/movieActions';
 
 const movies = {
   data: [],
@@ -10,17 +8,17 @@ const movies = {
   loading: true,
 };
 
-// export type movieActions = ActionType<typeof actions>;
+export type movieActions = ActionType<typeof actions>;
 
-const moviesReducer = (state = movies, action) => {
+const moviesReducer = (state = movies, action: movieActions) => {
   switch (action.type) {
-    case SET_LOADING:
+    case getType(actions.setLoading):
       return { ...state, loading: action.payload };
-    case FIND_MOVIES:
-      return { ...state, ...action.payload, loading: false };
-    case GET_DISCOVER:
-      return { ...state, ...action.payload, loading: false };
-    case SET_MOVIE:
+    // case getType(actions.findMovies):
+    //   return { ...state, ...action.payload, loading: false };
+    // case getType(actions.getDiscover):
+    //   return { ...state, ...action.payload, loading: false };
+    case getType(actions.setMovie):
       return {
         ...state,
         movie: {

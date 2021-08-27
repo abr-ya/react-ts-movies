@@ -4,7 +4,25 @@ import { useParams } from 'react-router-dom';
 // import MovieLinks from '../components/tmdb/MovieLinks';
 // import Loader from '../components/ui/Loader';
 
-const MoviePage = ({ movie, getMovieSaga }) => {
+export interface IMovie {
+  id: string;
+  name: string;
+  overview: string;
+  popularity: number;
+  poster: string;
+  release: string;
+  voteAverage: number;
+  voteCount: number;
+  site: string;
+  imdb: string;
+}
+
+export interface IMoviePage {
+  movie: IMovie[];
+  getMovieSaga: () => void;
+}
+
+const MoviePage = ({ movie, getMovieSaga }: IMoviePage) => {
   const { id } = useParams();
   useEffect(() => {
     if (!movie[id]) {

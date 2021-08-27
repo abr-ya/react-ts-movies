@@ -11,7 +11,6 @@ import './App.scss';
 import { getMovieSaga } from './redux/actions/movieActions';
 
 const App = ({ getMovie, loading }) => {
-  const [count, setCount] = useState(0);
   useEffect(() => {
     console.log('app!', loading, getMovie);
     getMovie('333');
