@@ -2,6 +2,7 @@ import { createCustomAction } from 'typesafe-actions'; // createAction
 import {
   // FIND_MOVIES, GET_MOVIE, GET_DISCOVER,
   SET_LOADING, GET_MOVIE_SAGA, SET_MOVIE,
+  GET_DISCOVER_SAGA, FIND_MOVIES_SAGA,
 } from './movieTypes';
 
 // export const showLoading = createAction(productActionTypes.SHOW_LOADING)();
@@ -43,6 +44,10 @@ export const setLoading = createCustomAction(
 //     payload: response,
 //   };
 // };
+export const findMoviesSaga = (query: string, page: number) => ({
+  type: FIND_MOVIES_SAGA,
+  payload: { query, page },
+});
 
 // export const getDiscover = (query: string, page: number) => {
 //   const response = api.getDiscover(query, page);
@@ -52,3 +57,7 @@ export const setLoading = createCustomAction(
 //     payload: response,
 //   };
 // };
+export const getDiscoverSaga = (sorting: string, page: number) => ({
+  type: GET_DISCOVER_SAGA,
+  payload: { sorting, page },
+});

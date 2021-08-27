@@ -26,6 +26,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "import/extensions": [1, { // импорт без расширений
             ".tsx": "never"
-        }]
+        }],
+        "max-len": [1, {"code": 120, "ignoreUrls": true}]
     }
 }

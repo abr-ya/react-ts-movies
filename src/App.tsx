@@ -11,10 +11,10 @@ import './App.scss';
 import { getMovieSaga } from './redux/actions/movieActions';
 
 const App = ({ getMovie, loading }) => {
-  useEffect(() => {
-    console.log('app!', loading, getMovie);
-    getMovie('333');
-  }, []);
+  // useEffect(() => {
+  //   console.log('app!', loading, getMovie);
+  //   getMovie('333');
+  // }, []);
 
   return (
     <BrowserRouter basename="/">

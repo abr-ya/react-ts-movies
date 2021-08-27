@@ -1,5 +1,5 @@
 import About from './About';
-import Home from './Home';
+import Home from './HomeContainer';
 import MoviePage from './MoviePageContainer';
 import Error404 from './Error404';
 
