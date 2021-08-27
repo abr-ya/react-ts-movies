@@ -1,0 +1,47 @@
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { movieFields } from '../api/tmdb';
+import Movie from '../components/tmdb/Movie';
+import MovieLinks from '../components/tmdb/MovieLinks';
+import Loader from '../components/ui/Loader';
+
+const MoviePage = ({ movie, getMovie }) => {
+  const { id } = useParams();
+  useEffect(() => {
+    if (!movie[id]) {
+      setTimeout(() => {
+        getMovie(id);
+      }, 500);
+    }
+  }, []);
+
+  return (
+    <div className="container">
+      <h1>MoviePage</h1>
+      <p>{`Это страница фильма: ${id}`}</p>
+      <p>
+        Страница отдельного фильма. Нужно посмотреть: что ещё из доп. данных вывести, кроме ссылок?
+      </p>
+      {movie && movie[id]
+        ? (
+          <>
+            <Movie data={movie[id]} />
+            <MovieLinks site={movie[id].site} imdb={movie[id].imdb} />
+          </>
+        )
+        : <Loader />}
+    </div>
+  );
+};
+
+MoviePage.propTypes = {
+  movie: movieFields, // .isRequired
+  getMovie: PropTypes.func.isRequired,
+};
+
+MoviePage.defaultProps = {
+  movie: {},
+};
+
+export default MoviePage;

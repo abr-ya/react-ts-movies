@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
+import {
+  About, Home, Error404, MoviePage,
+} from './pages';
+import Nav from './components/Nav/Nav';
+import './App.scss';
 import { getMovieSaga } from './redux/actions/movieActions';
 
-const App = ({getMovie, loading}) => {
+const App = ({ getMovie, loading }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     console.log('app!', loading, getMovie);
@@ -11,41 +18,18 @@ const App = ({getMovie, loading}) => {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="title">Hello Vite + React + TS + ESLint (Airbnb)!</p>
-        <p>
-          <button type="button" onClick={() => setCount((prevCount) => prevCount + 1)}>
-            Add 1 to counter
-          </button>
-        </p>
-        <p>
-          Counter value is:
-          {' '}
-          {count}
-        </p>
-        <p>Edit *.tsx files and save to test HMR updates.</p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <BrowserRouter basename="/">
+      <div className="container">
+        <Nav />
+      </div>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/detail/:id" component={MoviePage} />
+        <Route path="/404" component={Error404} />
+        <Redirect to="/404" />
+      </Switch>
+    </BrowserRouter>
   );
 };
 
