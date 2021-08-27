@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-// import { StateType } from 'typesafe-actions';
+import { StateType } from 'typesafe-actions';
 import reducers from './reducers';
 import rootSaga from './sagas/rootSaga';
 
@@ -14,6 +14,8 @@ interface IReduxProvider {
   initialState?: any;
 }
 
+export type RootStateType = StateType<typeof reducers>;
+
 const ReduxProvider = ({ children, initialState }: IReduxProvider) => {
   const isDEV = import.meta.env.DEV;
   const isDevToolsOn = (middlewares: any, on: boolean) => (
@@ -21,8 +23,6 @@ const ReduxProvider = ({ children, initialState }: IReduxProvider) => {
   );
 
   const sagaMiddleware = createSagaMiddleware();
-  // const rootReducer = createRootReducer();
-  // type RootState = StateType<typeof reducers>;
 
   // не забываем поставить
   // https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd

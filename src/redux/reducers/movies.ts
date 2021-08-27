@@ -1,7 +1,14 @@
 import { ActionType, getType } from 'typesafe-actions';
 import * as actions from '../actions/movieActions';
 
-const movies = {
+type moviesStateType = Readonly<{
+  data: any[];
+  pager: any;
+  movie: any;
+  loading: boolean;
+}>;
+
+const movies: moviesStateType = {
   data: [],
   pager: {},
   movie: {},
@@ -10,10 +17,10 @@ const movies = {
 
 export type movieActions = ActionType<typeof actions>;
 
-const moviesReducer = (state = movies, action: movieActions) => {
+const moviesReducer = (state = movies, action: movieActions): moviesStateType => {
   switch (action.type) {
     case getType(actions.setLoading):
-      return { ...state, loading: action.payload };
+      return { ...state, loading: action.payload as boolean };
     // case getType(actions.findMovies):
     //   return { ...state, ...action.payload, loading: false };
     // case getType(actions.getDiscover):

@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import MoviePage from './MoviePage';
-import {
-  getMovieSaga,
-} from '../redux/actions/movieActions';
+import { getMovieSaga } from '../redux/actions/movieActions';
+import { RootStateType } from '../redux/ReduxProvider';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootStateType) => ({
   movie: state.movies.movie,
 });
 
