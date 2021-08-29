@@ -8,7 +8,7 @@ import {
 import Nav from './components/Nav/Nav';
 import './App.scss';
 
-const App = () => (
+const App = (): JSX.Element => (
   <BrowserRouter basename="/">
     <div className="container">
       <Nav />

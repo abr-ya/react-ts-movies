@@ -4,7 +4,7 @@ import { setLoading, getDiscoverSaga, findMoviesSaga } from '../redux/actions/mo
 import { RootStateType } from '../redux/ReduxProvider';
 
 const mapStateToProps = (state: RootStateType) => ({
-  movies: state.movies,
+  totalPages: state.movies.totalPages,
 });
 
 const mapDispatchToProps = {

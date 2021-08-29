@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import './pagination.scss';
 
-const Pagination = ({ active, pages, setActive }) => {
-  // console.log('active', active);
-  // console.log('pages', pages);
+interface IPagination {
+  active: number;
+  pages: number;
+  setActive: (arg: number) => void;
+}
+
+const Pagination = ({ active, pages, setActive }: IPagination): JSX.Element => {
   const [links, setLinks] = useState([]);
   const [side] = useState(5);
   const [start, setStart] = useState(1);

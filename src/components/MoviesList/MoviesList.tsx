@@ -8,7 +8,7 @@ interface IMovieList {
   loading: boolean;
 }
 
-const MoviesList = ({ data, loading }: IMovieList) => (
+const MoviesList = ({ data, loading }: IMovieList): JSX.Element => (
   <>
     { loading
       ? <Loader />

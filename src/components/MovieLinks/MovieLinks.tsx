@@ -5,7 +5,7 @@ export interface IMovieLinks {
   imdb: string;
 }
 
-const MovieLinks = ({ site, imdb }: IMovieLinks) => (
+const MovieLinks = ({ site, imdb }: IMovieLinks): JSX.Element => (
   <div className="col-md-12">
     <div className="card mb-3">
       <div className="card-body">

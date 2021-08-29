@@ -2,35 +2,30 @@ import React, { useState, useEffect } from 'react';
 import RequestSetup from '../components/RequestSetup/RequestSetup';
 import MoviesList from '../components/MoviesList/MoviesListContainer';
 
+export interface IMoviePage {
+  setLoading: (id: boolean) => void;
+  findMoviesSaga: (query: string, page: number) => void;
+  getDiscoverSaga: (sorting: string, page: number) => void;
+  totalPages: number;
+}
+
 const Home = ({
-  // tmdb, findMovies, getDiscover,
-  setLoading, getDiscoverSaga, findMoviesSaga,
-}) => {
-  // const [movies, setMovies] = useState([]);
-  // const [pager, setPager] = useState(null);
+  setLoading, getDiscoverSaga, findMoviesSaga, totalPages,
+}: IMoviePage): JSX.Element => {
   const [sorting, setSorting] = useState('popularity.desc');
   const [query, setQueryState] = useState('');
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log(query, page, sorting);
     setLoading(true); // лоадинг здесь для эмуляции "долгой" загрузки
     if (query) { // в управляющих компонентах мы чистим query, когда discover
       setTimeout(() => {
         findMoviesSaga(query, page);
-      }, 200);
+      }, 500);
     } else {
       getDiscoverSaga(sorting, page);
     }
   }, [query, page, sorting]);
-
-  // useEffect(() => {
-  //   if (tmdb.data && Array.isArray(tmdb.data)) {
-  //     const { data: resData, pager: resPager } = tmdb;
-  //     setMovies(resData);
-  //     setPager(resPager);
-  //   }
-  // }, [tmdb]);
 
   const setQuery = (text: string) => {
     setPage(1);
@@ -41,11 +36,6 @@ const Home = ({
     setPage,
     setSorting,
     setQuery,
-  };
-
-  const control = {
-    query,
-    page,
   };
 
   return (
@@ -59,8 +49,9 @@ const Home = ({
       </p>
       <RequestSetup
         setters={setters}
-        control={control}
-        pages={10}
+        query={query}
+        page={page}
+        pages={totalPages || 10}
       />
       <MoviesList />
     </div>

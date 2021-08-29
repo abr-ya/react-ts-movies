@@ -1,16 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const BsSearch = ({ setter, value }) => {
+interface IBsSearch {
+  setter: (text: string) => void;
+  value: string;
+}
+
+const BsSearch = ({ setter, value }: IBsSearch): JSX.Element => {
   const [text, setText] = useState('');
-  const inputRef = useRef();
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setter(text);
   };
 
   useEffect(() => {
-    if (value === '') inputRef.current.value = '';
+    setText(value);
   }, [value]);
 
   return (
@@ -21,7 +25,7 @@ const BsSearch = ({ setter, value }) => {
         placeholder="Search"
         aria-label="Search"
         onChange={(e) => setText(e.target.value)}
-        ref={inputRef}
+        value={text}
       />
     </form>
   );

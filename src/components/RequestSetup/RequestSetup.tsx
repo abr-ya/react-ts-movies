@@ -4,41 +4,50 @@ import Pagination from '../Pagination/Pagination';
 import BsSearch from '../BsSearch/BsSearch';
 import styles from './RequestSetup.module.scss';
 
+interface IRequestSetup {
+  setters: {[key: string]: (arg: string | number) => void}
+  query: string;
+  page: number;
+  pages: number;
+}
+interface ISortingOption {
+  value: string;
+  label: string;
+}
+
 const RequestSetup = ({
-  data, setters, loading, pages, control,
-}) => {
-  const { setPage, setSorting, setQuery } = setters; // , setDirection
+  setters, query, page, pages,
+}: IRequestSetup): JSX.Element => {
+  const { setPage, setSorting, setQuery } = setters;
 
-  const [active, setActive] = useState(1);
-  const [innerSorting, setInnerSorting] = useState(null);
+  const [innerSorting, setInnerSorting] = useState<ISortingOption | null>(null);
 
-  const sortingOptions = [
+  const sortingOptions: ISortingOption[] = [
     { value: 'popularity.desc', label: 'sort by Popularity' },
     { value: 'vote_average.desc', label: 'sort by Rating' },
   ];
 
-  const sortingHandler = (selectedOption) => {
+  const sortingHandler = (selectedOption: ISortingOption) => {
     setQuery('');
-    setActive(1);
+    setPage(1);
     setInnerSorting(selectedOption);
     setSorting(selectedOption.value);
   };
 
-  const pageHandler = (page) => {
-    setActive(page);
-    setPage(page);
+  const pageHandler = (newPage: number) => {
+    setPage(newPage);
   };
 
-  const searchHandler = (query) => {
-    setQuery(query);
-    setActive(1);
+  const searchHandler = (newQuery: string) => {
+    setQuery(newQuery);
+    setPage(1);
     setInnerSorting(null);
   };
 
   return (
     <>
       <div className={styles.selectWrapper}>
-        <BsSearch setter={searchHandler} value={control.query} />
+        <BsSearch setter={searchHandler} value={query} />
         <Select
           className={styles.select}
           placeholder="... или подборка"
@@ -47,7 +56,7 @@ const RequestSetup = ({
           options={sortingOptions}
         />
       </div>
-      <Pagination active={active} pages={pages} setActive={pageHandler} />
+      <Pagination active={page} pages={pages} setActive={pageHandler} />
     </>
   );
 };
