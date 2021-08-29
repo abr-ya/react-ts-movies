@@ -1,8 +1,14 @@
 import React from 'react';
 import Loader from '../Loader/Loader';
 import MovieCard from '../MovieCard/MovieCard';
+import { IMovie } from '../../interfaces';
 
-const MoviesList = ({ data, loading }) => (
+interface IMovieList {
+  data: IMovie[];
+  loading: boolean;
+}
+
+const MoviesList = ({ data, loading }: IMovieList) => (
   <>
     { loading
       ? <Loader />
