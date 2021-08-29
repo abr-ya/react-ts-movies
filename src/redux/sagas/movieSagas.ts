@@ -35,6 +35,7 @@ function* findMoviesSaga(action: ReturnType<typeof movieActions.findMoviesSaga>)
     yield put(movieActions.setLoading(true));
     const { query, page } = action.payload;
     const response: IResponse = yield call(api.findMovies, query, page);
+    console.log(response);
     yield put(movieActions.setCurrentPage(response));
     yield put(movieActions.setLoading(false));
   } catch (error) {
