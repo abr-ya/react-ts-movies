@@ -23,8 +23,7 @@ function* getDiscoverSaga(action: ReturnType<typeof movieActions.getDiscoverSaga
     yield put(movieActions.setLoading(true));
     const { sorting, page } = action.payload;
     const response: IResponse = yield call(api.getDiscover, sorting, page);
-    console.log(response);
-    // yield put(movieActions.setMovie(response)); // response.data, если не обработали в апи!
+    yield put(movieActions.setCurrentPage(response)); // response.data, если не обработали в апи!
     yield put(movieActions.setLoading(false));
   } catch (error) {
     console.error(error);
@@ -36,8 +35,7 @@ function* findMoviesSaga(action: ReturnType<typeof movieActions.findMoviesSaga>)
     yield put(movieActions.setLoading(true));
     const { query, page } = action.payload;
     const response: IResponse = yield call(api.findMovies, query, page);
-    console.log(response);
-    // yield put(movieActions.setMovie(response)); // response.data, если не обработали в апи!
+    yield put(movieActions.setCurrentPage(response));
     yield put(movieActions.setLoading(false));
   } catch (error) {
     console.error(error);

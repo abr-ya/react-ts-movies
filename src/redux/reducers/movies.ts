@@ -1,16 +1,19 @@
 import { ActionType, getType } from 'typesafe-actions';
 import * as actions from '../actions/movieActions';
+import { IMovie } from '../../interfaces';
 
 type moviesStateType = Readonly<{
-  data: any[];
-  pager: any;
-  movie: any;
+  currentPage: IMovie[];
+  page: number;
+  totalPages: number;
+  movie: {[key: string]: IMovie};
   loading: boolean;
 }>;
 
 const movies: moviesStateType = {
-  data: [],
-  pager: {},
+  currentPage: [],
+  page: 0,
+  totalPages: 0,
   movie: {},
   loading: true,
 };
@@ -21,10 +24,8 @@ const moviesReducer = (state = movies, action: movieActions): moviesStateType =>
   switch (action.type) {
     case getType(actions.setLoading):
       return { ...state, loading: action.payload as boolean };
-    // case getType(actions.findMovies):
-    //   return { ...state, ...action.payload, loading: false };
-    // case getType(actions.getDiscover):
-    //   return { ...state, ...action.payload, loading: false };
+    case getType(actions.setCurrentPage):
+      return { ...state, ...action.payload, loading: false };
     case getType(actions.setMovie):
       return {
         ...state,

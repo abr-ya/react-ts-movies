@@ -1,25 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { IMovie } from '../interfaces';
 // import Movie from '../components/tmdb/Movie';
 // import MovieLinks from '../components/tmdb/MovieLinks';
 // import Loader from '../components/ui/Loader';
 
-export interface IMovie {
-  id: string;
-  name: string;
-  overview: string;
-  popularity: number;
-  poster: string;
-  release: string;
-  voteAverage: number;
-  voteCount: number;
-  site: string;
-  imdb: string;
-}
-
 export interface IMoviePage {
   movie: IMovie[];
-  getMovieSaga: () => void;
+  // eslint-disable-next-line no-unused-vars
+  getMovieSaga: (id: string) => void;
 }
 
 const MoviePage = ({ movie, getMovieSaga }: IMoviePage) => {

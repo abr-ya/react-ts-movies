@@ -8,13 +8,11 @@ import { StateType } from 'typesafe-actions';
 import reducers from './reducers';
 import rootSaga from './sagas/rootSaga';
 
+export type RootStateType = StateType<typeof reducers>;
 interface IReduxProvider {
   children: React.ReactElement;
-  // eslint-disable-next-line react/require-default-props
-  initialState?: any;
+  initialState?: RootStateType;
 }
-
-export type RootStateType = StateType<typeof reducers>;
 
 const ReduxProvider = ({ children, initialState }: IReduxProvider) => {
   const isDEV = import.meta.env.DEV;
