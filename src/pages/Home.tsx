@@ -40,7 +40,7 @@ const Home = ({
 
   return (
     <div className="container">
-      <h1>React API - TMDB</h1>
+      <h1 className="title">React API - TMDB</h1>
       <p>
         К сожалению, и API TMDB оказался не идеален для нашей задачи.
         При поиске по базе нельзя использовать сортировку.
