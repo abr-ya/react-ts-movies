@@ -5,7 +5,9 @@ import BsSearch from '../BsSearch/BsSearch';
 import styles from './RequestSetup.module.scss';
 
 interface IRequestSetup {
-  setters: {[key: string]: (arg: string | number) => void}
+  setPage: any,
+  setSorting: any,
+  setQuery: any,
   query: string;
   page: number;
   pages: number;
@@ -16,10 +18,8 @@ interface ISortingOption {
 }
 
 const RequestSetup = ({
-  setters, query, page, pages,
+  query, page, pages, setPage, setSorting, setQuery,
 }: IRequestSetup): JSX.Element => {
-  const { setPage, setSorting, setQuery } = setters;
-
   const [innerSorting, setInnerSorting] = useState<ISortingOption | null>(null);
 
   const sortingOptions: ISortingOption[] = [

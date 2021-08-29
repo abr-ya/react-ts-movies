@@ -4,8 +4,8 @@ import MovieCard from '../MovieCard/MovieCard';
 import { IMovie } from '../../interfaces';
 
 interface IMovieList {
-  data: IMovie[];
-  loading: boolean;
+  data?: IMovie[]; // из-за падения сборки и контейнера - проверить ToDo!
+  loading?: boolean; // из-за падения сборки и контейнера - проверить ToDo!
 }
 
 const MoviesList = ({ data, loading }: IMovieList): JSX.Element => (
@@ -14,7 +14,8 @@ const MoviesList = ({ data, loading }: IMovieList): JSX.Element => (
       ? <Loader />
       : (
         <div className="row">
-          { data.map((item) => (<MovieCard data={item} key={item.id} />)) }
+          { data && Array.isArray(data) // проверка, если не обязательно - ToDo!
+            && data.map((item) => (<MovieCard data={item} key={item.id} />)) }
         </div>
       )}
   </>

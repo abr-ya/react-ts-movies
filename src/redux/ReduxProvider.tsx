@@ -11,7 +11,7 @@ import rootSaga from './sagas/rootSaga';
 export type RootStateType = StateType<typeof reducers>;
 interface IReduxProvider {
   children: React.ReactElement;
-  initialState: RootStateType;
+  initialState?: RootStateType;
 }
 
 const ReduxProvider = ({ children, initialState }: IReduxProvider): JSX.Element => {

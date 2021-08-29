@@ -48,7 +48,9 @@ const Home = ({
         Поэтому левая и правая часть работают каждая сама по себе...
       </p>
       <RequestSetup
-        setters={setters}
+        setPage={setPage}
+        setSorting={setSorting}
+        setQuery={setQuery}
         query={query}
         page={page}
         pages={totalPages || 10}

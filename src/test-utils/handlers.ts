@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable */
 import { rest } from 'msw';
 import mockDiscover from './mockDiscover';
 
