@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RequestSetup from '../components/RequestSetup/RequestSetup';
-// import CardsWrapper from '../components/tmdb/CardsWrapper';
+import MoviesList from '../components/MoviesList/MoviesListContainer';
 
 const Home = ({
   // tmdb, findMovies, getDiscover,
@@ -62,6 +62,7 @@ const Home = ({
         control={control}
         pages={10}
       />
+      <MoviesList />
     </div>
   );
 };
