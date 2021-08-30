@@ -32,12 +32,6 @@ const Home = ({
     setQueryState(text);
   };
 
-  const setters = {
-    setPage,
-    setSorting,
-    setQuery,
-  };
-
   return (
     <div className="container">
       <h1 className="title">React API - TMDB</h1>
@@ -48,10 +42,12 @@ const Home = ({
         Поэтому левая и правая часть работают каждая сама по себе...
       </p>
       <RequestSetup
-        setters={setters}
         query={query}
         page={page}
         pages={totalPages || 10}
+        setPage={setPage}
+        setSorting={setSorting}
+        setQuery={setQuery}
       />
       <MoviesList />
     </div>

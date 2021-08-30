@@ -11,10 +11,10 @@ import rootSaga from './sagas/rootSaga';
 export type RootStateType = StateType<typeof reducers>;
 interface IReduxProvider {
   children: React.ReactElement;
-  initialState: RootStateType;
+  // initialState: RootStateType;
 }
 
-const ReduxProvider = ({ children, initialState }: IReduxProvider): JSX.Element => {
+const ReduxProvider = ({ children }: IReduxProvider): JSX.Element => {
   const isDEV = import.meta.env.DEV;
   const isDevToolsOn = (middlewares: any, on: boolean) => (
     on ? composeWithDevTools(middlewares) : middlewares
@@ -26,7 +26,7 @@ const ReduxProvider = ({ children, initialState }: IReduxProvider): JSX.Element 
   // https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
   const store = createStore(
     reducers,
-    initialState,
+    // initialState,
     isDevToolsOn(applyMiddleware(sagaMiddleware), isDEV),
   );
 

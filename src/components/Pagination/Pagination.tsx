@@ -8,19 +8,26 @@ interface IPagination {
   setActive: (arg: number) => void;
 }
 
+interface ILink {
+  i: number;
+  liClass: string;
+  spanClass: string;
+}
+
 const Pagination = ({ active, pages, setActive }: IPagination): JSX.Element => {
-  const [links, setLinks] = useState([]);
-  const [side] = useState(5);
+  const [links, setLinks] = useState<ILink[]>([]);
   const [start, setStart] = useState(1);
   const [end, setEnd] = useState(pages);
 
+  const SIDE = 5;
+
   useEffect(() => {
-    setStart(active > side ? active - side : 1);
-    setEnd(active + side > pages ? pages : active + side);
+    setStart(active > SIDE ? active - SIDE : 1);
+    setEnd(active + SIDE > pages ? pages : active + SIDE);
   }, [pages, active]);
 
   useEffect(() => {
-    const tempLinks = [];
+    const tempLinks: ILink[] = [];
     for (let i = start; i <= end; i += 1) { // 1-pages
       tempLinks[i] = { i, liClass: 'page-item', spanClass: 'page-link' };
     }

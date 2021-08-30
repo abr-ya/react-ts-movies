@@ -4,11 +4,11 @@ import MovieCard from '../MovieCard/MovieCard';
 import { IMovie } from '../../interfaces';
 
 interface IMovieList {
-  data: IMovie[];
-  loading: boolean;
+  data?: IMovie[]; // ToDo - разобраться - падает при сборке - ругается на контейнер
+  loading?: boolean;
 }
 
-const MoviesList = ({ data, loading }: IMovieList): JSX.Element => (
+const MoviesList = ({ data = [], loading = false }: IMovieList): JSX.Element => (
   <>
     { loading
       ? <Loader />

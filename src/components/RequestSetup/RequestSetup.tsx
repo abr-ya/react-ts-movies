@@ -5,10 +5,12 @@ import BsSearch from '../BsSearch/BsSearch';
 import styles from './RequestSetup.module.scss';
 
 interface IRequestSetup {
-  setters: {[key: string]: (arg: string | number) => void}
   query: string;
   page: number;
   pages: number;
+  setPage: any;
+  setSorting: any;
+  setQuery: any;
 }
 interface ISortingOption {
   value: string;
@@ -16,11 +18,9 @@ interface ISortingOption {
 }
 
 const RequestSetup = ({
-  setters, query, page, pages,
+  query, page, pages, setPage, setSorting, setQuery,
 }: IRequestSetup): JSX.Element => {
-  const { setPage, setSorting, setQuery } = setters;
-
-  const [innerSorting, setInnerSorting] = useState<ISortingOption | null>(null);
+  const [innerSorting, setInnerSorting] = useState<ISortingOption>({ value: '', label: '' });
 
   const sortingOptions: ISortingOption[] = [
     { value: 'popularity.desc', label: 'sort by Popularity' },
@@ -41,7 +41,7 @@ const RequestSetup = ({
   const searchHandler = (newQuery: string) => {
     setQuery(newQuery);
     setPage(1);
-    setInnerSorting(null);
+    setInnerSorting({ value: '', label: '' });
   };
 
   return (
@@ -52,7 +52,7 @@ const RequestSetup = ({
           className={styles.select}
           placeholder="... или подборка"
           value={innerSorting}
-          onChange={sortingHandler}
+          onChange={(option) => sortingHandler(option || { value: '', label: '' })}
           options={sortingOptions}
         />
       </div>

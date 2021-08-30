@@ -7,7 +7,7 @@ import App from './App';
 
 describe('App Component ...', () => {
   beforeEach(() => {
-    render(<App />);
+    render(<App />, {});
   });
 
   test('renders Title ...', () => {
